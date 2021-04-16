@@ -149,7 +149,7 @@ while True:
             else:
                 print("IMDBot: Sorry, I could not find anything about that.")
                 
-        elif (('summary' in user_input) or ('plot' in user_input)):
+        elif (('plot' in user_input)):
             if 'movie' in locals():
                 movie = f.giveSummary(movie)
             else:
@@ -179,7 +179,7 @@ while True:
 
         else:
             #print("ELSE")
-            bot.get_response(raw_user_input)
+            print("IMDBot:", bot.get_response(raw_user_input))
             #print("IMDBot: I'm sorry. Something went wrong. Can you try to ask that again in another way?")
 
     except(KeyboardInterrupt, EOFError, SystemExit) as e: #end conversation in case of fatal error or user inputs ctrl+c

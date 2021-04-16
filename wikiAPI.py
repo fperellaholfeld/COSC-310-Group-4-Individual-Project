@@ -4,7 +4,7 @@ from requests.models import Response
 
 def getArticle(movie):
     wiki = MediaWiki()
-    result = wiki.search(movie + ' (Movie)', results=3)
+    result = wiki.search(movie, results=3)
     page = wiki.page(result[0])
     return page
 
