@@ -9,7 +9,10 @@ COSC 310 Individual Assignment - Group 4
 * [Language and Modules](#language-and-modules)
 * [Setup](#setup)
 * [Classes](#classes)
+* [Testing](#testing)
+* [Further API Integration](#further-api-integration-for-individual-project)
 * [TODO](#todo)
+
 
 
 ## General Information
@@ -23,7 +26,7 @@ For this project, we created a responsive and interactive chatbot using Python w
 - nltk 3.4.4
 - spaCy 3.0.5 **with** Pipelines en_core_web_sm 3.0.0
 - pyspellchecker 0.6.1 
-- mediaWiki API 0.7.0
+- pymediaWiki API 0.7.0
 - wolframalpha API 5.0.0
 
 
@@ -152,6 +155,19 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 - Builds and runs a GUI container for chatbot interaction
 - This GUI is more of a proof of concept, as time constraints prevented implementation to the main runtime.
 - It can be run to see what it would look like, but chatbot interaction is nonfunctional
+
+### Further API Integration for Individual Project
+
+#### wikiAPI.py
+- This class encompasses the mediawiki API functions and is called by the main class
+- It can search for and find an article based on the user's input with getArticle() and then uses it for the following functions:
+  - getSummary(): Summarizes the wikipedia article to give very in depth information on a movie.
+  - getCritical(): outputs the critical reception of a movie including quotes from critics if provided on the Wikipedia article.
+  - getPlot(): Gives a much more in depth synopsis of the movie than IMDb's API
+
+#### wolframAPI.py
+- This class fleshes out the conversational skills of the bot by answering questions not relevant to the subject matter, instead of telling the user it can't understand the input, it can better try to keep a flow.
+- This class also served as practice in calling an API key without putting it in the code, which will be useful to flesh out in future projects.
 
 
 ## Possible Improvements
