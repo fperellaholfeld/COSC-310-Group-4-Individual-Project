@@ -1,4 +1,8 @@
 from re import split
+from wikiAPI import getCritical, getSummary, getPlot
+from wolframAPI import wolframQuestion
+
+import wolframalpha
 import film as f
 import person as p
 import company as c
@@ -150,6 +154,28 @@ while True:
                 movie = f.giveSummary(movie)
             else:
                 print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
+        
+        elif(('ask' in user_input) or ('question' in user_input)):
+            wolframQuestion(userName)
+            
+        elif(('critic' in user_input) or ('reception' in user_input)):
+            if 'movie' in locals():
+                getCritical(movie)
+            else:
+                print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
+
+        elif(('wiki' in user_input) and ('summary' in user_input)):
+            if 'movie' in locals():
+                getSummary(movie)
+            else:
+                print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
+        
+        elif((('wiki' in user_input) and ('plot' in user_input)) or ('synopsis' in user_input)):
+            if 'movie' in locals():
+                getPlot(movie)
+            else:
+                print('IMDBot: Sorry, I don\'t know which movie you\'re asking about. Try to ask me to find a movie :)')
+
 
         else:
             #print("ELSE")
