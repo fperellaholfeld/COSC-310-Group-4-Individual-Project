@@ -23,6 +23,8 @@ For this project, we created a responsive and interactive chatbot using Python w
 - nltk 3.4.4
 - spaCy 3.0.5 **with** Pipelines en_core_web_sm 3.0.0
 - pyspellchecker 0.6.1 
+- mediaWiki API 0.7.0
+- wolframalpha API 5.0.0
 
 
 ## Setup
@@ -40,6 +42,10 @@ For this project, we created a responsive and interactive chatbot using Python w
 > $ pip install pyspellchecker
 
 > $ pip install nltk
+
+> $ pip install pymediawiki
+ 
+> $ pip install wolframalpha
 
 We need to also download the corpus necessary for our NLP and program to run. To do this:
 > Make sure to "$ pip install nltk" beforehand
@@ -105,8 +111,51 @@ To see the class structure of the IMDb integration, take a look at the [UML Diag
 
 ### Natural Language Processing
 
+#### ner.py
 
-## TODO
+- This class handles named entity recognition, it breaks down user input in a way that allows the chatbot to discern whether a user is asking about a certain movie, person, or company within a sentence.
 
-In future iterations, natural language processing will be implemented, as well as a GUI, and custom API implementations.
-This may require a full refactor of the project, so it is very much a WIP.
+#### synonyms.py
+
+- This class handles synonym recognition, which allows the bot to understand what a user input means even if certain words haven't been hardcoded.
+- It is based off of the wordnet training corpus for accuracy.
+
+#### spellinghandler.py
+
+- Ensures that any misspelt words are properly corrected in the user input before any other class processes it.
+- It fixes any spelling mistakes to prevent runtime errors in later processing.
+
+#### postagging.py
+
+- Facilitates the breaking down of a sentence into its basic parts, it can tag nouns, verbs, etc.
+- This makes the bot more able to understand the subject and reason for a user input, making commands easier to communicate.
+
+#### Trainers/Utility
+
+- nerTrainer.py and nerTrainerHelp.py -- These two classes work in tandem
+  - nerTrainer has a vast collection of custom training cases as a corpus for the named entity recognition object to use.
+  - nerTrainerHelp makes the Strings easier to process for training.
+
+- chatterTrainer.py trains the chatterbot object used for generating procedural responses, it only needs to be run once to train, but can be run again if training   cases are added. The neural network training is stored in db.sqlite3 so that training doesn't have to occur at runtime. (To retrain and run chatterTrainer.py, you   must install chatterbot-corpus).
+   
+
+### Testing
+
+#### test_IMDBot.py
+- Runs all the unittest functions to ensure proper code functionality.
+- Gives the bot example inputs to test if it can understand commands as natural language.
+
+### GUI
+
+#### gui.py
+
+- Builds and runs a GUI container for chatbot interaction
+- This GUI is more of a proof of concept, as time constraints prevented implementation to the main runtime.
+- It can be run to see what it would look like, but chatbot interaction is nonfunctional
+
+
+## Possible Improvements
+
+- GUI implementation
+- Larger corpora for the trainers
+- POS Tagging improvements regarding interfunctionality
