@@ -1,5 +1,4 @@
 from mediawiki import MediaWiki
-import mediawiki
 from requests.models import Response
 
 def getArticle(movie):
